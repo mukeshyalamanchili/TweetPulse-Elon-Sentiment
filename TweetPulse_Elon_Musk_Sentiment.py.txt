@@ -1,0 +1,21 @@
+from textblob import TextBlob
+
+# Sample Elon Musk tweets (replace with live tweets if using Twitter API)
+tweets = [
+    "Tesla Autopilot AI day pushed to September 30, as we may have an Optimus prototype working by then.",
+    "Starship will be ready for the next orbital launch attempt soon.",
+    "There is a massive shortage of computer chips. It’s insane!",
+    "To be clear, I support the vaccine, but mandates are not the answer.",
+    "Dogecoin might be the people’s crypto.",
+    "The Tesla Roadster will fly a bit. Just kidding… unless?"
+]
+
+print("🚀 TweetPulse - Sentiment Analysis of Elon Musk Tweets\n")
+print("{:<80} {:<10} {:<10}".format("Tweet", "Sentiment", "Score"))
+print("-" * 105)
+
+for tweet in tweets:
+    analysis = TextBlob(tweet)
+    polarity = analysis.sentiment.polarity
+    sentiment = "Positive" if polarity > 0.1 else "Negative" if polarity < -0.1 else "Neutral"
+    print("{:<80} {:<10} {:<10}".format(tweet[:77] + ("..." if len(tweet) > 77 else ""), sentiment, round(polarity, 2)))
